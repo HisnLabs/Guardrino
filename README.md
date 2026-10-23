@@ -1,0 +1,96 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Guardrino: the AI guardrail for Arabic, its dialects, Arabizi and English" width="100%">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-14b8a6?style=flat-square"></a>
+  <a href="https://huggingface.co/Hisnlabs"><img alt="Hugging Face" src="https://img.shields.io/badge/Hugging%20Face-Hisnlabs-f5a524?style=flat-square&logo=huggingface&logoColor=white"></a>
+  <a href="https://hisnlabs.com/guardrino/en"><img alt="Website" src="https://img.shields.io/badge/website-hisnlabs.com-0f1417?style=flat-square"></a>
+  <a href="https://huggingface.co/spaces/Hisnlabs/guardrino-demo"><img alt="Live demo" src="https://img.shields.io/badge/live%20demo-try%20it-14b8a6?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <b>Works with</b> &nbsp; OpenAI-compatible API &middot; SSE streaming &middot; LiteLLM &middot; MCP
+  <br><sub>PyPI package: coming soon</sub>
+</p>
+
+# Guardrino
+
+Guardrino is a guard between your company and every AI model. It reads each message on its way in and each reply on its way out, and it was built for Arabic (Gulf, Levantine, Egyptian and Moroccan dialects), Arabizi (Arabic in Latin letters) and English from day one.
+
+> **What is in this repository.** The integrations and examples you need to connect your stack to Guardrino. The Guardrino gateway itself is a commercial product and is **not** part of this repository. [Ask for a demo](#ask-for-a-demo).
+
+<p align="center">
+  <img src="assets/protection-replay.gif" alt="Animated replay: a message passes through clean-up, rules, the Guardrino model and conversation memory before reaching the AI model" width="860">
+  <br><sub>Sample messages. Each layer shown does this in the gateway today.</sub>
+</p>
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Your app or agent] --> L0
+    subgraph G[Guardrino]
+      direction LR
+      L0[L0 Clean-up] --> L1[L1 Rules] --> L2[L2 Guardrino model]
+      M[(Conversation memory)] -.-> L2
+    end
+    L2 --> LLM[The AI model]
+    LLM --> O[Output check]
+    O --> A
+```
+
+Every message is cleaned of disguises (L0), checked against rules, secrets, personal data and known attack signatures (L1), then judged by a model trained on Arabic and English (L2), while conversation memory follows the whole dialogue. The reply is checked on the way back before your user sees it.
+
+## Built for the Gulf
+
+| Strength | What it means for you |
+|---|---|
+| Arabic, its dialects and Arabizi | Trained on real Gulf, Levantine, Egyptian and Moroccan text, and on Arabic written in Latin letters. |
+| Your data stays in the country | Runs inside your network or in a UAE cloud. Your messages never leave the country. |
+| Conversation memory | Follows the whole conversation and steps in when an attack is built slowly across several messages. |
+| Disguises undone first | Invisible characters, look-alike letters, base64 and Arabizi are cleaned up before a message is judged. |
+| Canary tokens | A secret marker in your system prompt: any reply that leaks it is blocked and raises an alert. |
+| Same-day signatures | A newly confirmed attack joins the signature list and is blocked the same day, between model updates. |
+| Built to frustrate probing | Minimal answers, uniform timing, rate limits and cooldowns give automated attack tools as little as possible to learn from. |
+| Gulf personal data | Recognises and masks Emirates ID, iqama, IBAN, local phone numbers, API keys and other secrets. |
+| Watch first, then enforce | Start in watch-only mode with a full audit log, then switch to blocking app by app. |
+
+## Quick start
+
+**LiteLLM plugin, 3 steps** ([details](integrations/litellm))
+
+1. Install: `pip install ./integrations/litellm` (PyPI package coming soon).
+2. Add the guardrail to your LiteLLM `config.yaml` ([example](examples/litellm/option-a-plugin.config.yaml)): `guardrail: guardrino_litellm.GuardrinoGuardrail`.
+3. Set `GUARDRINO_URL=https://guardrino.your-company.example` and run `litellm --config config.yaml`.
+
+**OpenAI-compatible proxy, 2 steps** ([examples](examples))
+
+1. Point your client's base URL at `https://guardrino.your-company.example/v1`.
+2. Send the same requests as before. Blocked ones return a clear `guardrino_blocked` error.
+
+```python
+from openai import OpenAI
+client = OpenAI(base_url="https://guardrino.your-company.example/v1", api_key="...")
+```
+
+More: [streaming (SSE)](examples/streaming-sse), [MCP security proxy](examples/mcp), [LiteLLM, both options](examples/litellm).
+
+## بالعربية
+
+جاردرينو حارس بين شركتك وكل نموذج ذكاء اصطناعي. يفحص كل رسالة قبل وصولها إلى النموذج وكل رد قبل وصوله إلى المستخدم، وقد صُمّم منذ البداية للعربية ولهجاتها الخليجية والشامية والمصرية والمغربية، وللعربيزي (العربية المكتوبة بحروف لاتينية) وللإنجليزية. تبقى بياناتك داخل شبكتك أو في سحابة داخل الإمارات. البوابة منتج تجاري غير مضمّن في هذا المستودع، وهذا المستودع يضم أدوات الربط والأمثلة.
+
+## Ask for a demo
+
+See Guardrino on your own traffic. Write to **[contact@hisnlabs.com](mailto:contact@hisnlabs.com)**.
+
+## Links
+
+- Website: <https://hisnlabs.com/guardrino/en>
+- Integrations and examples: [integrations/](integrations), [examples/](examples)
+- Hugging Face: <https://huggingface.co/Hisnlabs>
+- Live demo: <https://huggingface.co/spaces/Hisnlabs/guardrino-demo>
+
+## License
+
+Apache-2.0, Copyright 2026 HisnLabs. See [LICENSE](LICENSE). This applies to the code in this repository, not to the commercial gateway.
