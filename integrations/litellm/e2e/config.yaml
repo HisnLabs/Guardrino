@@ -4,7 +4,7 @@ model_list:
     litellm_params:
       model: openai/mock-gpt
       api_base: os.environ/MOCK_UPSTREAM_URL
-      api_key: sk-mock
+      api_key: mock-key
 
 guardrails:
   - guardrail_name: guardrino-input

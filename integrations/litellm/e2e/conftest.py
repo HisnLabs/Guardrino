@@ -8,7 +8,7 @@ HERE = Path(__file__).resolve().parent
 PLUGIN = HERE.parent
 ROOT = PLUGIN.parent.parent
 DEVAPI = ROOT / "target/debug/guardrino-devapi"
-KEY = "sk-e2e-test-key"
+KEY = "e2e-test-key"
 L2 = os.environ.get("GUARDRINO_L2_URL", "http://localhost:8810")
 
 
