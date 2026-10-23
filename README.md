@@ -6,6 +6,7 @@
   <a href="https://github.com/HisnLabs/Guardrino/actions/workflows/test.yml"><img alt="Tests" src="https://img.shields.io/github/actions/workflow/status/HisnLabs/Guardrino/test.yml?branch=main&style=flat-square&label=tests"></a>
   <a href="https://github.com/HisnLabs/Guardrino/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/HisnLabs/Guardrino?style=flat-square&color=14b8a6"></a>
   <a href="https://github.com/HisnLabs/Guardrino/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/HisnLabs/Guardrino?style=flat-square&color=f5a524"></a>
+  <a href="https://hisnlabs.com/guardrino/en"><img alt="Gateway built in Rust" src="https://img.shields.io/badge/gateway-built%20in%20Rust-b7410e?style=flat-square&logo=rust&logoColor=white"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-14b8a6?style=flat-square"></a>
   <a href="https://huggingface.co/Hisnlabs"><img alt="Hugging Face" src="https://img.shields.io/badge/Hugging%20Face-Hisnlabs-f5a524?style=flat-square&logo=huggingface&logoColor=white"></a>
   <a href="https://hisnlabs.com/guardrino/en"><img alt="Website" src="https://img.shields.io/badge/website-hisnlabs.com-0f1417?style=flat-square"></a>
@@ -13,7 +14,7 @@
 </p>
 
 <p align="center">
-  <b>Works with</b> &nbsp; OpenAI-compatible API &middot; SSE streaming &middot; LiteLLM &middot; MCP
+  <b>Works with</b> &nbsp; OpenAI-compatible API &middot; SSE streaming &middot; LiteLLM &middot; MCP &middot; Python &middot; Rust
   <br><sub>PyPI package: coming soon</sub>
 </p>
 
