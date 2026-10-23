@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "files": {
+      "type": "http",
+      "url": "https://guardrino.your-company.example/mcp/files"
+    }
+  }
+}

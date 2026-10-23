@@ -1,0 +1,25 @@
+model_list:
+  - model_name: gpt-4o
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: os.environ/OPENAI_API_KEY
+
+guardrails:
+  - guardrail_name: guardrino-input
+    litellm_params:
+      guardrail: guardrino_litellm.GuardrinoGuardrail
+      mode: pre_call
+      default_on: true
+      api_base: os.environ/GUARDRINO_URL
+      tenant: acme
+      app: support-bot
+      fail_open: true
+  - guardrail_name: guardrino-output
+    litellm_params:
+      guardrail: guardrino_litellm.GuardrinoGuardrail
+      mode: post_call
+      default_on: true
+      api_base: os.environ/GUARDRINO_URL
+      tenant: acme
+      app: support-bot
+      fail_open: true

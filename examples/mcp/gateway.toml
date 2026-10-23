@@ -1,0 +1,7 @@
+# Guardrino gateway side: declare the MCP servers it fronts.
+[mcp]
+on_tool_poisoning = "drop"   # "drop" removes a flagged tool from tools/list; "refuse" refuses the whole response
+timeout_secs = 120
+servers = [
+  { name = "files", url = "http://mcp-files.internal.example:9000/mcp", headers = { Authorization = "Bearer <server-token>" } },
+]
