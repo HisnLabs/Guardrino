@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guardrino-litellm"
+version = "0.1.0"
+description = "LiteLLM custom guardrail that sends prompts and replies to a Guardrino gateway"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "HisnLabs" }]
+requires-python = ">=3.9"
+dependencies = ["litellm[proxy]", "httpx", "fastapi"]
+keywords = ["litellm", "guardrail", "llm-security", "guardrino"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-asyncio", "respx"]
+
+[tool.setuptools]
+packages = ["guardrino_litellm"]
+py-modules = ["guardrino_guardrail"]
