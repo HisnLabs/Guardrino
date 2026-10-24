@@ -141,5 +141,5 @@ Apache-2.0, Copyright 2026 HisnLabs. See [LICENSE](LICENSE). This applies to the
 
 <p align="center">
   <b>If Guardrino helps you protect AI in the Gulf, give the repo a ⭐: it helps other teams find it.</b><br>
-  <sub>Made in Dubai by <a href="https://hisnlabs.com">HisnLabs</a> · <a href="https://hisnlabs.com/guardrino/en">hisnlabs.com/guardrino</a> · contact@hisnlabs.com</sub>
+  <sub>Made in Dubai by <a href="https://hisnlabs.com">HisnLabs</a> · <a href="https://hisnlabs.com/guardrino/en">hisnlabs.com/guardrino</a> · <a href="https://x.com/hisnlabs">X</a> · <a href="https://www.instagram.com/hisnlabs">Instagram</a> · contact@hisnlabs.com</sub>
 </p>
