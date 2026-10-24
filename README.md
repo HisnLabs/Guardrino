@@ -29,6 +29,14 @@ Guardrino is a guard between your company and every AI model. It reads each mess
   <br><sub>Sample messages. Each layer shown does this in the gateway today.</sub>
 </p>
 
+## What HisnLabs offers
+
+| | What you get | How |
+|---|---|---|
+| 🛡️ **Guardrino Gateway** (commercial) | The security gateway between your apps or AI agents and any model: inspect API, OpenAI-compatible proxy with streaming checks, LiteLLM plugin, MCP security proxy; clean-up, rules, the Guardrino model, conversation memory and output checks; admin console; on-premises or UAE cloud | A demo, then a watch-only trial on your own traffic. Pricing on request: a subscription that includes model and signature updates. **contact@hisnlabs.com** |
+| 🔓 **Open source** (Apache-2.0) | The `guardrino-litellm` plugin and the integration examples in this repo; **Guardrino-t7 Open v3**, an earlier compact classifier ([release](https://github.com/HisnLabs/Guardrino/releases/tag/v3.0.0), [Hugging Face](https://huggingface.co/Hisnlabs/guardrino-t7-open)) | Free: clone, install, try |
+| 🤝 **Services** | Deployment, per-app policies, a trial report of what Guardrino would have blocked, support, continuous updates | With the gateway |
+
 ## How it works
 
 ```mermaid
