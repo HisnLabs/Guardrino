@@ -34,17 +34,16 @@ Guardrino is a guard between your company and every AI model. It reads each mess
 ```mermaid
 flowchart LR
     A[Your app or agent] --> L0
-    subgraph G[Guardrino]
+    subgraph G[Guardrino gateway]
       direction LR
-      L0[L0 Clean-up] --> L1[L1 Rules] --> L2[L2 Guardrino model]
-      M[(Conversation memory)] -.-> L2
+      L0[L0 Clean-up] --> L1[L1 Rules] --> L2[L2 Guardrino model] --> CM[Conversation memory]
     end
-    L2 --> LLM[The AI model]
+    CM --> LLM[The AI model]
     LLM --> O[Output check]
     O --> A
 ```
 
-Every message is cleaned of disguises (L0), checked against rules, secrets, personal data and known attack signatures (L1), then judged by a model trained on Arabic and English (L2), while conversation memory follows the whole dialogue. The reply is checked on the way back before your user sees it.
+Every message is cleaned of disguises (L0), checked against rules, secrets, personal data and known attack signatures (L1), then judged by a model trained on Arabic and English (L2). A separate conversation-memory layer follows the scores across the whole dialogue and steps in when an attack is built slowly over several messages. The reply is checked on the way back before your user sees it.
 
 ## Built for the Gulf
 
@@ -64,9 +63,40 @@ Every message is cleaned of disguises (L0), checked against rules, secrets, pers
 
 **LiteLLM plugin, 3 steps** ([details](integrations/litellm))
 
-1. Install: `pip install ./integrations/litellm` (PyPI package coming soon).
-2. Add the guardrail to your LiteLLM `config.yaml` ([example](examples/litellm/option-a-plugin.config.yaml)): `guardrail: guardrino_litellm.GuardrinoGuardrail`.
-3. Set `GUARDRINO_URL=https://guardrino.your-company.example` and run `litellm --config config.yaml`.
+1. Install the plugin on your LiteLLM server: `pip install "litellm[proxy]" ./integrations/litellm` (PyPI package coming soon).
+2. Add Guardrino to your LiteLLM `config.yaml`: one guardrail before the model call and one after it.
+
+```yaml
+guardrails:
+  - guardrail_name: guardrino-input
+    litellm_params:
+      guardrail: guardrino_litellm.GuardrinoGuardrail
+      mode: pre_call            # checks the user's message (and tool results) before the model
+      default_on: true
+      api_base: os.environ/GUARDRINO_URL
+      tenant: your-company
+      app: support-bot
+      fail_open: true           # Guardrino unreachable → traffic passes (false: refuse)
+  - guardrail_name: guardrino-output
+    litellm_params:
+      guardrail: guardrino_litellm.GuardrinoGuardrail
+      mode: post_call           # checks the model's reply before your user sees it
+      default_on: true
+      api_base: os.environ/GUARDRINO_URL
+      tenant: your-company
+      app: support-bot
+      fail_open: true
+```
+
+3. Set your Guardrino gateway's address and LiteLLM's key, then start it:
+
+```sh
+export GUARDRINO_URL=https://guardrino.your-company.example
+export LITELLM_MASTER_KEY=sk-your-litellm-key
+litellm --config config.yaml
+```
+
+A full working file, with a model list, is in [`integrations/litellm/config.yaml`](integrations/litellm/config.yaml).
 
 **OpenAI-compatible proxy, 2 steps** ([examples](examples))
 
