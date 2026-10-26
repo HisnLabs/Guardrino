@@ -20,6 +20,8 @@
 
 # Guardrino
 
+<img align="right" width="140" src="assets/made-in-uae-badge.png" alt="Made in UAE — Guardrino, the AI guardian">
+
 Guardrino is a guard between your company and every AI model. It reads each message on its way in and each reply on its way out, and it was built for Arabic (Gulf, Levantine, Egyptian and Moroccan dialects), Arabizi (Arabic in Latin letters) and English from day one.
 
 > **What is in this repository.** The integrations and examples you need to connect your stack to Guardrino. The Guardrino gateway itself is a commercial product and is **not** part of this repository. [Ask for a demo](#ask-for-a-demo).
