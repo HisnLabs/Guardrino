@@ -35,7 +35,7 @@ Guardrino is a guard between your company and every AI model. It reads each mess
 
 | | What you get | How |
 |---|---|---|
-| 🛡️ **Guardrino Gateway** (commercial) | The security gateway between your apps or AI agents and any model: inspect API, OpenAI-compatible proxy with streaming checks, LiteLLM plugin, MCP security proxy; clean-up, rules, the Guardrino model, conversation memory and output checks; admin console; on-premises or UAE cloud | A demo, then a watch-only trial on your own traffic. Pricing on request: a subscription that includes model and signature updates. **contact@hisnlabs.com** |
+| 🛡️ **Guardrino Gateway** (commercial) | The security gateway between your apps or AI agents and any model: inspect API, OpenAI-compatible proxy with streaming checks, LiteLLM plugin, MCP security proxy; clean-up, rules, the Guardrino model, conversation memory and output checks; admin console; on your own servers (Guardrino Sovereign) or in a cloud region in your country, or the nearest one available (Guardrino Cloud) | A demo, then a watch-only trial on your own traffic. Pricing on request: a subscription that includes model and signature updates. **contact@hisnlabs.com** |
 | 🔓 **Open source** (Apache-2.0) | The `guardrino-litellm` plugin and the integration examples in this repo; **Guardrino-t7 Open v3**, an earlier compact classifier ([release](https://github.com/HisnLabs/Guardrino/releases/tag/v3.0.0), [Hugging Face](https://huggingface.co/Hisnlabs/guardrino-t7-open)) | Free: clone, install, try |
 | 🤝 **Services** | Deployment, per-app policies, a trial report of what Guardrino would have blocked, support, continuous updates | With the gateway |
 
@@ -60,7 +60,7 @@ Every message is cleaned of disguises (L0), checked against rules, secrets, pers
 | Strength | What it means for you |
 |---|---|
 | Arabic, its dialects and Arabizi | Trained on real Gulf, Levantine, Egyptian and Moroccan text, and on Arabic written in Latin letters. |
-| Checks run on your own servers | Guardrino's checks run on your own servers or in a UAE data centre; the check itself never sends your messages elsewhere. Where your AI model runs is your choice. |
+| Your servers, or a cloud region in your country | Guardrino runs on your own servers (Guardrino Sovereign) or in a cloud region in your country, or the nearest one available (Guardrino Cloud). The check itself never sends your messages anywhere else. Where your AI model runs is your choice. |
 | Conversation memory | Follows the whole conversation and steps in when an attack is built slowly across several messages. |
 | Disguises undone first | Invisible characters, look-alike letters, base64 and Arabizi are cleaned up before a message is judged. |
 | Canary tokens | A secret marker in your system prompt: any reply that leaks it is blocked and raises an alert. |
@@ -86,7 +86,7 @@ Every message is cleaned of disguises (L0), checked against rules, secrets, pers
 
 <sub><sup>‡</sup> The same model at a stricter threshold, so it blocks as few safe messages as ArabGuard.</sub><br>
 <sub><sup>†</sup> Built for Arabic by another team, scored the same way.</sub><br>
-<sub>Method: HisnLabs' own test set of 13,249 attacks and 31,348 safe messages, mostly Arabic. That favours a model trained on similar data, like ours, so this is not an independent test. Each model's threshold was set so it blocks 1 in 100 safe messages on a validation sample. Tested 26–27 October 2026. The outside models were built for English or for one dialect; this is not a criticism of them. One public source in the test set (arabic-guardrail, 2,271 attacks) may be in other models' training data, and its training split was in ours; without it, Guardrino-t7 catches 4,596 of 5,603 Arabic attacks (82%).</sub>
+<sub>Method: HisnLabs' own test set of 13,249 attacks and 31,348 safe messages, mostly Arabic. That favours a model trained on similar data, like ours, so this is not an independent test. Each model's threshold was set so it blocks 1 in 100 safe messages on a validation sample. Tested 26–27 October 2026. The outside models were built for English, for one dialect, or mainly for Modern Standard Arabic; this is not a criticism of them. One public source in the test set (arabic-guardrail, 2,271 attacks) may be in other models' training data, and its training split was in ours; without it, Guardrino-t7 catches 4,596 of 5,603 Arabic attacks (82%).</sub>
 <!-- arabic-comparison:end -->
 
 ## Quick start
